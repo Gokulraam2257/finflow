@@ -26,12 +26,12 @@ export function Dashboard() {
   const pcProgress = Math.min(100, (state.gamingPCFund.currentAmount / state.gamingPCFund.targetAmount) * 100);
 
   return (
-    <div className="flex-1 pb-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen p-4">
-      <div className="max-w-2xl mx-auto space-y-4">
+    <div className="flex-1 pb-32 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-900 min-h-screen">
+      <div className="max-w-3xl mx-auto p-4 sm:p-6 space-y-8">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-white">Dashboard</h1>
-          <p className="text-slate-400">Your financial overview</p>
+        <div className="pt-4">
+          <h1 className="text-4xl font-bold text-white mb-2">Dashboard</h1>
+          <p className="text-slate-400 text-lg">Your financial overview</p>
         </div>
 
         {/* Sibling Fee Alert */}
@@ -50,111 +50,135 @@ export function Dashboard() {
         )}
 
         {/* Financial Health */}
-        <Card>
-          <div className="flex items-center gap-4 mb-4">
-            <ProgressRing progress={health.score} label={`${health.score}`} />
-            <div className="flex-1">
-              <h2 className="font-bold text-white text-lg">Financial Health</h2>
-              <Badge label={health.status} />
+        <Card className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-blue-900/30">
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-2">Financial Health</h2>
+              <p className="text-slate-400">Your overall financial status</p>
             </div>
-          </div>
-          <div className="grid grid-cols-4 gap-2 text-xs">
-            <div className="bg-slate-700/30 p-2 rounded text-center">
-              <p className="text-slate-400">Savings</p>
-              <p className="font-bold text-emerald-400">{health.savingsRate.toFixed(0)}%</p>
+            <div className="flex items-center justify-center gap-8">
+              <ProgressRing progress={health.score} label={`${health.score}`} />
+              <div className="space-y-2">
+                <Badge label={health.status} />
+                <p className="text-sm text-slate-300">Keep improving your finances</p>
+              </div>
             </div>
-            <div className="bg-slate-700/30 p-2 rounded text-center">
-              <p className="text-slate-400">Expenses</p>
-              <p className="font-bold text-red-400">{health.expenseRatio.toFixed(0)}%</p>
-            </div>
-            <div className="bg-slate-700/30 p-2 rounded text-center">
-              <p className="text-slate-400">Emergency</p>
-              <p className="font-bold text-blue-400">{health.emergencyCoverage.toFixed(1)}mo</p>
-            </div>
-            <div className="bg-slate-700/30 p-2 rounded text-center">
-              <p className="text-slate-400">Goals</p>
-              <p className="font-bold text-purple-400">{health.goalCompletionPct}%</p>
+            <div className="grid grid-cols-4 gap-2 text-xs mt-4">
+              <div className="bg-slate-700/30 p-3 rounded-lg text-center">
+                <p className="text-slate-400 text-xs font-semibold">Savings</p>
+                <p className="font-bold text-emerald-400 mt-1">{health.savingsRate.toFixed(0)}%</p>
+              </div>
+              <div className="bg-slate-700/30 p-3 rounded-lg text-center">
+                <p className="text-slate-400 text-xs font-semibold">Expenses</p>
+                <p className="font-bold text-red-400 mt-1">{health.expenseRatio.toFixed(0)}%</p>
+              </div>
+              <div className="bg-slate-700/30 p-3 rounded-lg text-center">
+                <p className="text-slate-400 text-xs font-semibold">Emergency</p>
+                <p className="font-bold text-blue-400 mt-1">{health.emergencyCoverage.toFixed(1)}mo</p>
+              </div>
+              <div className="bg-slate-700/30 p-3 rounded-lg text-center">
+                <p className="text-slate-400 text-xs font-semibold">Goals</p>
+                <p className="font-bold text-purple-400 mt-1">{health.goalCompletionPct}%</p>
+              </div>
             </div>
           </div>
         </Card>
 
         {/* Monthly Summary */}
-        <div className="grid grid-cols-3 gap-3">
-          <Card>
-            <p className="text-slate-400 text-xs">Income</p>
-            <p className="text-xl font-bold text-emerald-400">{formatCurrency(income).slice(0, 4)}k</p>
+        <div className="grid grid-cols-3 gap-4">
+          <Card className="bg-slate-800/40">
+            <div className="text-center">
+              <p className="text-xs text-slate-400 font-semibold mb-2">INCOME</p>
+              <p className="text-2xl font-bold text-green-400">{formatCurrency(income).slice(0, 4)}k</p>
+            </div>
           </Card>
-          <Card>
-            <p className="text-slate-400 text-xs">Expenses</p>
-            <p className="text-xl font-bold text-red-400">{formatCurrency(expenses).slice(0, 4)}k</p>
+          <Card className="bg-slate-800/40">
+            <div className="text-center">
+              <p className="text-xs text-slate-400 font-semibold mb-2">EXPENSES</p>
+              <p className="text-2xl font-bold text-red-400">{formatCurrency(expenses).slice(0, 4)}k</p>
+            </div>
           </Card>
-          <Card>
-            <p className="text-slate-400 text-xs">Balance</p>
-            <p className={`text-xl font-bold ${balance >= 0 ? 'text-blue-400' : 'text-red-400'}`}>
-              {formatCurrency(balance).slice(0, 4)}k
-            </p>
+          <Card className="bg-slate-800/40">
+            <div className="text-center">
+              <p className="text-xs text-slate-400 font-semibold mb-2">BALANCE</p>
+              <p className={`text-2xl font-bold ${balance >= 0 ? 'text-blue-400' : 'text-red-400'}`}>
+                {formatCurrency(balance).slice(0, 4)}k
+              </p>
+            </div>
           </Card>
         </div>
 
-        {/* Emergency Fund */}
-        <Card>
-          <div className="flex items-center gap-3 mb-3">
-            <Shield size={20} className="text-blue-400" />
-            <div className="flex-1">
-              <h3 className="font-semibold text-white">Emergency Fund</h3>
-              <p className="text-xs text-slate-400">Coverage: {(state.emergencyFund.currentAmount / 18000).toFixed(1)} months</p>
+        {/* Savings Goals */}
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-white">Savings Goals Progress</h2>
+          
+          {/* Emergency Fund */}
+          <Card className="bg-slate-800/50 border-blue-900/30">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <Shield size={24} className="text-blue-400" />
+                <div>
+                  <h3 className="font-bold text-white">🚨 Emergency Fund</h3>
+                  <p className="text-xs text-slate-400">Coverage: {(state.emergencyFund.currentAmount / 18000).toFixed(1)} months</p>
+                </div>
+              </div>
+              <span className="text-lg font-bold text-blue-400">{Math.round(emergencyProgress)}%</span>
             </div>
-            <span className="text-sm font-bold text-blue-400">{Math.round(emergencyProgress)}%</span>
-          </div>
-          <ProgressBar progress={emergencyProgress} />
-          <div className="flex justify-between text-xs text-slate-400 mt-2">
-            <span>{formatCurrency(state.emergencyFund.currentAmount)}</span>
-            <span>Target: {formatCurrency(state.emergencyFund.targetAmount)}</span>
-          </div>
-        </Card>
+            <ProgressBar progress={emergencyProgress} />
+            <div className="flex justify-between text-sm text-slate-400 mt-3">
+              <span>{formatCurrency(state.emergencyFund.currentAmount)}</span>
+              <span>Target: {formatCurrency(state.emergencyFund.targetAmount)}</span>
+            </div>
+          </Card>
 
-        {/* Sibling Education */}
-        <Card>
-          <div className="flex items-center gap-3 mb-3">
-            <GraduationCap size={20} className="text-purple-400" />
-            <div className="flex-1">
-              <h3 className="font-semibold text-white">Sibling Education</h3>
-              <p className="text-xs text-slate-400">Fee due: {formatCurrency(state.siblingFund.quarterlyFeeAmount)}</p>
+          
+          {/* Sibling Education */}
+          <Card className="bg-slate-800/50 border-orange-900/30">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <GraduationCap size={24} className="text-orange-400" />
+                <div>
+                  <h3 className="font-bold text-white">📚 Sibling Education</h3>
+                  <p className="text-xs text-slate-400">Fee due: {formatCurrency(state.siblingFund.quarterlyFeeAmount)}</p>
+                </div>
+              </div>
+              <span className="text-lg font-bold text-orange-400">{Math.round(siblingProgress)}%</span>
             </div>
-            <span className="text-sm font-bold text-purple-400">{Math.round(siblingProgress)}%</span>
-          </div>
-          <ProgressBar progress={siblingProgress} />
-          <div className="flex justify-between text-xs text-slate-400 mt-2">
-            <span>{formatCurrency(state.siblingFund.currentAmount)}</span>
-            <span>Monthly: +{formatCurrency(state.siblingFund.monthlyContribution)}</span>
-          </div>
-        </Card>
+            <ProgressBar progress={siblingProgress} />
+            <div className="flex justify-between text-sm text-slate-400 mt-3">
+              <span>{formatCurrency(state.siblingFund.currentAmount)}</span>
+              <span>Monthly: +{formatCurrency(state.siblingFund.monthlyContribution)}</span>
+            </div>
+          </Card>
 
-        {/* Gaming PC Fund */}
-        <Card>
-          <div className="flex items-center gap-3 mb-3">
-            <Cpu size={20} className="text-purple-500" />
-            <div className="flex-1">
-              <h3 className="font-semibold text-white">Gaming PC Fund</h3>
-              <p className="text-xs text-slate-400">Target: {formatCurrency(state.gamingPCFund.targetAmount)}</p>
+          {/* Gaming PC Fund */}
+          <Card className="bg-slate-800/50 border-purple-900/30">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <Cpu size={24} className="text-purple-400" />
+                <div>
+                  <h3 className="font-bold text-white">🎮 Gaming PC Fund</h3>
+                  <p className="text-xs text-slate-400">Target: {formatCurrency(state.gamingPCFund.targetAmount)}</p>
+                </div>
+              </div>
+              <span className="text-lg font-bold text-purple-400">{Math.round(pcProgress)}%</span>
             </div>
-            <span className="text-sm font-bold text-purple-400">{Math.round(pcProgress)}%</span>
-          </div>
-          <ProgressBar progress={pcProgress} />
-          <div className="flex justify-between text-xs text-slate-400 mt-2">
-            <span>{formatCurrency(state.gamingPCFund.currentAmount)}</span>
-            <span>Monthly: +{formatCurrency(state.gamingPCFund.monthlyContribution)}</span>
-          </div>
-        </Card>
+            <ProgressBar progress={pcProgress} />
+            <div className="flex justify-between text-sm text-slate-400 mt-3">
+              <span>{formatCurrency(state.gamingPCFund.currentAmount)}</span>
+              <span>Monthly: +{formatCurrency(state.gamingPCFund.monthlyContribution)}</span>
+            </div>
+          </Card>
+        </div>
 
         {/* Net Worth */}
-        <Card className="bg-gradient-to-br from-emerald-900/20 to-blue-900/20 border-emerald-700/30">
-          <div className="flex items-center justify-between">
+        <Card className="bg-gradient-to-br from-emerald-900/30 to-blue-900/30 border-emerald-700/30">
+          <div className="flex items-center justify-between p-2">
             <div>
-              <p className="text-emerald-300 text-sm">Total Net Worth</p>
-              <p className="text-2xl font-bold text-white">{formatCurrency(netWorth)}</p>
+              <p className="text-emerald-300 text-sm font-semibold">Total Net Worth</p>
+              <p className="text-3xl font-bold text-white mt-1">{formatCurrency(netWorth)}</p>
             </div>
-            <TrendingUp className="text-emerald-400" size={32} />
+            <TrendingUp className="text-emerald-400" size={40} />
           </div>
         </Card>
       </div>

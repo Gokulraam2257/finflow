@@ -8,11 +8,11 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'finflow - Personal Finance App',
-        short_name: 'finflow',
+        name: 'FinFlow - Personal Finance App',
+        short_name: 'FinFlow',
         description: 'Track your finances, goals, and savings with precision',
-        theme_color: '#0f172a',
-        background_color: '#0f172a',
+        theme_color: '#0a0a0f',
+        background_color: '#0a0a0f',
         display: 'standalone',
         scope: '/',
         start_url: '/',
@@ -20,48 +20,34 @@ export default defineConfig({
           {
             src: '/favicon.ico',
             sizes: '64x64 32x32 24x24 16x16',
-            type: 'image/x-icon'
+            type: 'image/x-icon',
           },
           {
             src: '/icon-192.png',
             sizes: '192x192',
             type: 'image/png',
-            purpose: 'any'
+            purpose: 'any',
           },
           {
             src: '/icon-512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any'
+            purpose: 'any',
           },
           {
             src: '/icon-192-maskable.png',
             sizes: '192x192',
             type: 'image/png',
-            purpose: 'maskable'
+            purpose: 'maskable',
           },
           {
             src: '/icon-512-maskable.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'maskable'
-          }
+            purpose: 'maskable',
+          },
         ],
         categories: ['finance', 'productivity'],
-        screenshots: [
-          {
-            src: '/screenshot-1.png',
-            sizes: '540x720',
-            type: 'image/png',
-            form_factor: 'narrow'
-          },
-          {
-            src: '/screenshot-2.png',
-            sizes: '1280x720',
-            type: 'image/png',
-            form_factor: 'wide'
-          }
-        ]
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
@@ -74,9 +60,9 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
-              }
-            }
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+            },
           },
           {
             urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
@@ -85,12 +71,12 @@ export default defineConfig({
               cacheName: 'gstatic-fonts-cache',
               expiration: {
                 maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
-              }
-            }
-          }
-        ]
-      }
-    })
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+            },
+          },
+        ],
+      },
+    }),
   ],
 })
