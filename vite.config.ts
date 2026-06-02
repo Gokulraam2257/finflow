@@ -3,12 +3,14 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+   base: '/finflow/',
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
         name: 'FinFlow - Personal Finance App',
+        
         short_name: 'FinFlow',
         description: 'Track your finances, goals, and savings with precision',
         theme_color: '#0a0a0f',
